@@ -13,13 +13,24 @@ app.use(bodyParser.urlencoded({extended : true}))
 
 let inputHistory = [];
 
-app.post('/addition', (req, res) =>{
-    console.log(req.body);
-    inputHistory.push(req.body)
+// app.post('/addition', (req, res) =>{
+//     console.log(req.body);
+//     inputHistory.push(req.body)
 
-    res.sendStatus(201);
-})
+//     res.sendStatus(201);
+// })
 
+module.exports =  function additionInput (){
+    console.log('Addition button clicked')
+
+    let newData = {
+        inputOne: Number($('#inputOne').val()),//Pulling from input one
+        inputTwo: Number($('#inputTwo').val()),//pulling from input two
+    }
+   let sum = newData.inputOne + newData.inputTwo
+   console.log('The sum is',sum)
+   return sum;
+}
 
 //listener for connections
 app.listen(PORT, () => {
