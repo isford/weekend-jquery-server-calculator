@@ -10,6 +10,7 @@ function handleReady(){//JQ loaded Test
      $('#subtract').on('click', subtractInput)
      $('#multiply').on('click', multiplyInput)
      $('#divide').on('click', divideInput)
+
 }
 
 function additionInput (){
@@ -20,7 +21,8 @@ function additionInput (){
         inputTwo: Number($('#inputTwo').val()),//pulling from input two
     }
    let sum = newData.inputOne + newData.inputTwo
-   console.log('The sum is',sum)
+   console.log('The sum is',sum);
+//    $('.history').append(`<ul>${sum}</ul>`)
    return sum;
 }
 
