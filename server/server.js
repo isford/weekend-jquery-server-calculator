@@ -11,6 +11,16 @@ app.use(express.static('server/public'));
 //body parser for postman
 app.use(bodyParser.urlencoded({extended : true}))
 
+let inputHistory = [];
+
+app.post('/addition', (req, res) =>{
+    console.log(req.body);
+    inputHistory.push(req.body)
+
+    res.sendStatus(201);
+})
+
+
 //listener for connections
 app.listen(PORT, () => {
     console.log('RUNNING ON PORT:', PORT)
