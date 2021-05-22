@@ -31,6 +31,15 @@ function handleReady(){//JQ loaded Test
 
     getCalculation();
 
+    $('#clear').on('click', clearInputs)
+
+}
+
+function clearInputs(){
+    $('#inputOne').val('');
+    $('#inputTwo').val('');
+    $('.inputThree').removeClass('colorPurple');
+    //getCalculation();
 }
 
 function addInputs(){
