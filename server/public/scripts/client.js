@@ -29,6 +29,8 @@ function handleReady(){//JQ loaded Test
         $(this).addClass('colorPurple');
     })
 
+    getCalculation();
+
 }
 
 function addInputs(){
@@ -47,7 +49,31 @@ function addInputs(){
         data: newInputs
     }).then(response => {
         console.log('The users input was', response)
+        getCalculation();
     });
+}
+
+function getCalculation(){
+    $.ajax({
+        method: 'GET',
+        url: '/history'
+    }).then(response => {
+        console.log('The input history was', response);
+
+        $('.history').empty();
+
+        
+
+        for (let calculation of response){
+            $('#solution').empty().append(`<h3>${calculation.switchResult}</h3>`);
+            $('.history').append(`
+            <li>
+            ${calculation.switchFirstNum} ${calculation.switchOperator} ${calculation.switchSecondNum}
+            = ${calculation.switchResult}
+            </li>
+            `);
+        }
+    })
 }
 
 // function additionInput (){

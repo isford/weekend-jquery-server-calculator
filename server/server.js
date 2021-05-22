@@ -58,6 +58,12 @@ app.post('/history', (req, res) => {
         res.sendStatus(200);
 })
 
+app.get('/history', (req, res) => {
+    console.log('Got to /history');
+
+    res.send(inputHistory)
+})
+
 // module.exports =  function additionInput (){
 //     console.log('Addition button clicked')
 
