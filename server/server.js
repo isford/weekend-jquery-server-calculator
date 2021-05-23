@@ -1,6 +1,6 @@
 const express = require('express');//requires express install
 const bodyParser = require('body-parser');//allows us to use postman
-//const { watch } = require('fs'); not sure where this came from
+
 
 //make a server called app
 const app = express();
@@ -10,9 +10,9 @@ const PORT = 5000;
 app.use(express.static('server/public'));
 //body parser for postman
 app.use(bodyParser.urlencoded({extended : true}))
-
+//Empty array to push user input history
 let inputHistory = [];
-
+//user input put into a new object
 app.post('/history', (req, res) => {
     console.log('Received from user input', req.body);
 
@@ -23,7 +23,7 @@ app.post('/history', (req, res) => {
     let operator = req.body.operator;
 
     let result = 0;
-
+    //switch statement to perform correct operation
     switch(operator){
         case '+':
            result = Number(numberOne) + Number(numberTwo)
@@ -42,9 +42,9 @@ app.post('/history', (req, res) => {
            console.log('The quotient is', result)
            break;
         default:
-            console.log('Pick an operator ya twit')
+            console.log('Pick an operator')
     }
-
+    //new object to push into array
     let switchMath = {
         switchFirstNum: numberOne, 
         switchOperator: operator, 
@@ -57,24 +57,12 @@ app.post('/history', (req, res) => {
 
         res.sendStatus(200);
 })
-
+//sending array as a response
 app.get('/history', (req, res) => {
     console.log('Got to /history');
 
     res.send(inputHistory)
 })
-
-// module.exports =  function additionInput (){
-//     console.log('Addition button clicked')
-
-//     let newData = {
-//         inputOne: Number($('#inputOne').val()),//Pulling from input one
-//         inputTwo: Number($('#inputTwo').val()),//pulling from input two
-//     }
-//    let sum = newData.inputOne + newData.inputTwo
-//    console.log('The sum is',sum)
-//    return sum;
-// }
 
 //listener for connections
 app.listen(PORT, () => {
